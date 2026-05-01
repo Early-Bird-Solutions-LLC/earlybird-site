@@ -34,7 +34,6 @@ src/
 │   ├── AboutTeaser.astro
 │   ├── Footer.astro
 │   └── case-thumbs/         # Per-case-study SVG illustrations
-│       ├── PciLandingZone.astro
 │       ├── ConfluenceRag.astro
 │       └── NetModernization.astro
 ├── content/                 # Markdown content (editable)

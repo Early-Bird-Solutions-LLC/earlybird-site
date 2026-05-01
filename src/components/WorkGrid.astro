@@ -1,6 +1,6 @@
 ---
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import { getCollection } from 'astro:content';
-import PciLandingZone from './case-thumbs/PciLandingZone.astro';
 import ConfluenceRag from './case-thumbs/ConfluenceRag.astro';
 import NetModernization from './case-thumbs/NetModernization.astro';
 
@@ -9,8 +9,7 @@ const work = (await getCollection('work')).sort(
 );
 
 // Map slug → thumbnail component
-const thumbs: Record<string, any> = {
-  'pci-landing-zone': PciLandingZone,
+const thumbs: Record<string, AstroComponentFactory> = {
   'conflux-rag': ConfluenceRag,
   'net-modernization': NetModernization,
 };

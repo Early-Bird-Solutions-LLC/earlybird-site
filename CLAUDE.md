@@ -117,7 +117,7 @@ If you want a custom thumbnail SVG: create `src/components/case-thumbs/YourCase.
 
 ## Compliance / claims hygiene
 
-**Important:** Never claim PCI-DSS v4.0 compliance — Jim's primary work is not yet on v4. Use just "PCI-DSS" until the v4 milestone lands at APS, then those same four locations (Hero, CredibilityStrip, services/pci-secure-ai.md, work/pci-landing-zone.md) can be updated to add the version back. v4 is a real differentiator and worth claiming once it's true.
+**Important:** Never claim PCI-DSS v4.0 compliance — Jim's primary work is not yet on v4. Use just "PCI-DSS" until the v4 milestone lands at APS, then the three current locations (Hero, CredibilityStrip, services/pci-secure-ai.md) can be updated to add the version back. v4 is a real differentiator and worth claiming once it's true.
 
 Other version refs in the codebase that are legitimate and should stay:
 - "Application Gateway WAF v2" — actual Microsoft product version
