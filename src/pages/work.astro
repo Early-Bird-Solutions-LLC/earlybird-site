@@ -30,12 +30,23 @@ const work = (await getCollection('work')).sort(
               <div class="work-content">
                 <h2 class="work-title">{entry.data.title}</h2>
                 <p class="work-summary">{entry.data.summary}</p>
-                {entry.data.highlights.length > 0 && (
-                  <ul class="work-highlights">
-                    {entry.data.highlights.map((h) => (
-                      <li>{h}</li>
+                {entry.data.manifest.length > 0 ? (
+                  <dl class="work-manifest" aria-label="Stack manifest">
+                    {entry.data.manifest.map(({ key, value }) => (
+                      <div class="manifest-row">
+                        <dt>{key}</dt>
+                        <dd>{value}</dd>
+                      </div>
                     ))}
-                  </ul>
+                  </dl>
+                ) : (
+                  entry.data.highlights.length > 0 && (
+                    <ul class="work-highlights">
+                      {entry.data.highlights.map((h) => (
+                        <li>{h}</li>
+                      ))}
+                    </ul>
+                  )
                 )}
               </div>
             </article>
@@ -103,6 +114,49 @@ const work = (await getCollection('work')).sort(
     color: var(--ink-soft);
     font-family: var(--mono);
     letter-spacing: 0.02em;
+  }
+
+  /* Stack manifest — key/value rows, reads like a build artifact. */
+  .work-manifest {
+    margin: 24px 0 0;
+    padding: 20px 24px;
+    background: var(--bg);
+    border-left: 2px solid var(--accent);
+    max-width: 720px;
+    font-family: var(--mono);
+  }
+
+  .manifest-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 16px;
+    padding: 6px 0;
+  }
+
+  .manifest-row dt {
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    padding-top: 4px;
+  }
+
+  .manifest-row dd {
+    margin: 0;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  @media (max-width: 600px) {
+    .manifest-row {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .manifest-row dt {
+      padding-top: 8px;
+    }
   }
 
   @media (max-width: 900px) {

@@ -1,0 +1,27 @@
+{
+  "name": "Early Bird Solutions",
+  "short_name": "Early Bird",
+  "description": "Independent Azure AI consulting on the Microsoft stack.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#F4F1EA",
+  "theme_color": "#F4F1EA",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

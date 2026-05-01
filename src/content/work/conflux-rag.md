@@ -12,6 +12,19 @@ highlights:
   - "Confluence Cloud REST API v2 with webhook-driven re-indexing"
   - "Server-Sent Events for streaming chat responses"
   - "Azure Bicep with Deployment Stacks"
+manifest:
+  - key: "Source"
+    value: "Confluence Cloud · REST API v2 · webhook-driven re-index"
+  - key: "Retrieval"
+    value: "Azure AI Search · vector + BM25 hybrid"
+  - key: "Reasoning"
+    value: "Azure AI Services · GPT-4o · text-embedding-3-large (3072 dims)"
+  - key: "Delivery"
+    value: ".NET 4.8 ASCX/WebForms · OWIN Web API 2 · SSE streaming"
+  - key: "State"
+    value: "PostgreSQL via EF6 · ingestion + webhook tracking"
+  - key: "Infra"
+    value: "Azure Bicep · Deployment Stacks"
 ---
 
 Complete Confluence Q&A RAG platform built end-to-end. Differentiator: a

@@ -4,7 +4,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const credentials = [
   'Microsoft Certified — Azure Solutions Architect Expert',
   'Microsoft Certified — Azure Administrator Associate',
-  'Working toward — Azure AI Engineer Associate (AI-102)',
+];
+
+const provenance = [
+  'Microsoft Certified Professional since 2003',
+  '30 Microsoft exams passed across .NET, SQL Server, Azure, and AI tracks',
 ];
 
 const stack = [
@@ -61,6 +65,12 @@ const stack = [
             <div class="side-label">Credentials</div>
             <ul>
               {credentials.map((c) => <li>{c}</li>)}
+            </ul>
+          </div>
+          <div class="side-block">
+            <div class="side-label">Provenance</div>
+            <ul>
+              {provenance.map((p) => <li>{p}</li>)}
             </ul>
           </div>
           <div class="side-block">

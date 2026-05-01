@@ -13,6 +13,17 @@ highlights:
   - "Microsoft Entra External ID (CIAM) for end-user auth"
   - "PdfPig for text extraction; HybridCache for cost-aware embedding reuse"
   - "Image description-based retrieval; analytics + cost tracking dashboard"
+manifest:
+  - key: "Ingest"
+    value: "PdfPig text extraction · chunking · HybridCache for embedding reuse"
+  - key: "Retrieval"
+    value: "PostgreSQL pgvector · HNSW cosine · image-description retrieval"
+  - key: "Reasoning"
+    value: "Azure OpenAI · GPT-4o · text-embedding-ada-002"
+  - key: "Delivery"
+    value: "Blazor InteractiveAuto · MudBlazor · ASP.NET Core 10 Minimal APIs · SignalR"
+  - key: "Security"
+    value: "YARP reverse proxy as BFF · Entra External ID (CIAM)"
 ---
 
 A from-scratch RAG platform for searching uploaded technical manuals.

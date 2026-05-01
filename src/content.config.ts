@@ -20,6 +20,9 @@ const work = defineCollection({
     summary: z.string(),
     public: z.boolean().default(false),
     highlights: z.array(z.string()).default([]),
+    manifest: z
+      .array(z.object({ key: z.string(), value: z.string() }))
+      .default([]),
   }),
 });
 

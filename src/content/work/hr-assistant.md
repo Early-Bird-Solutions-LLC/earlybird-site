@@ -10,6 +10,17 @@ highlights:
   - ".NET 10 Blazor Web App (Auto render mode) with MudBlazor UI"
   - "Microsoft Entra ID (OIDC) — single-tenant access only"
   - "Bicep IaC; subsequently promoted into Azure AI Foundry as a managed Agent"
+manifest:
+  - key: "Source"
+    value: "SharePoint · HR document corpus"
+  - key: "Retrieval"
+    value: "Azure AI Search · vector index"
+  - key: "Reasoning"
+    value: "Azure OpenAI · GPT-4o · text-embedding-3-small"
+  - key: "Delivery"
+    value: ".NET 10 Blazor (Auto) · MudBlazor · Entra ID OIDC"
+  - key: "Infra"
+    value: "Bicep · later promoted to Foundry Agent"
 ---
 
 End-to-end RAG application: SharePoint as the document source, Azure AI
