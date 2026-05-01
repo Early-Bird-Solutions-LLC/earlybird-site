@@ -1,0 +1,63 @@
+---
+const items = [
+  'Azure Solutions Architect Expert',
+  'Azure Administrator Associate',
+  'PCI-DSS production experience',
+  '10+ years enterprise .NET / Azure',
+];
+---
+
+<div class="credibility">
+  <div class="container">
+    <div class="credibility-inner">
+      {
+        items.map((label) => (
+          <div class="cred-item">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+            {label}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .credibility {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg-tint);
+    padding: 28px 0;
+  }
+
+  .credibility-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .cred-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .cred-item svg {
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+</style>

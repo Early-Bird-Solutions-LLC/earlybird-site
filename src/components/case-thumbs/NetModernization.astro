@@ -1,0 +1,65 @@
+---
+// Case study thumbnail — Legacy .NET modernization.
+// Illustrates: monolithic Framework block → microservices grid.
+---
+
+<svg
+  class="thumb-svg"
+  viewBox="0 0 400 300"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Architecture diagram: Monolithic .NET Framework codebase migrated to .NET Core microservices"
+>
+  <defs>
+    <linearGradient id="g-mod" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#B8763E" />
+      <stop offset="100%" stop-color="#8C5829" />
+    </linearGradient>
+    <marker id="arrow-mod" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0F1A2C" />
+    </marker>
+  </defs>
+  <rect width="400" height="300" fill="#FAF8F2" />
+
+  <!-- Before -->
+  <rect x="40" y="60" width="140" height="180" fill="white" stroke="#D8D2C2" />
+  <rect x="40" y="60" width="3" height="180" fill="#D8D2C2" />
+  <text x="52" y="82" font-family="JetBrains Mono" font-size="9" fill="#8A8578">BEFORE</text>
+  <text x="52" y="100" font-family="IBM Plex Sans" font-size="11" fill="#0F1A2C">.NET Framework</text>
+  <g opacity="0.7">
+    <rect x="52" y="115" width="116" height="14" fill="#EDE8DC" />
+    <rect x="52" y="135" width="116" height="14" fill="#EDE8DC" />
+    <rect x="52" y="155" width="116" height="14" fill="#EDE8DC" />
+    <rect x="52" y="175" width="116" height="14" fill="#EDE8DC" />
+    <rect x="52" y="195" width="116" height="14" fill="#EDE8DC" />
+    <rect x="52" y="215" width="80" height="14" fill="#EDE8DC" />
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 195 150 L 215 150" stroke="#0F1A2C" stroke-width="1.5" marker-end="url(#arrow-mod)" />
+
+  <!-- After -->
+  <rect x="220" y="60" width="140" height="180" fill="white" stroke="#D8D2C2" />
+  <rect x="220" y="60" width="3" height="180" fill="url(#g-mod)" />
+  <text x="232" y="82" font-family="JetBrains Mono" font-size="9" fill="#8A8578">AFTER</text>
+  <text x="232" y="100" font-family="IBM Plex Sans" font-size="11" fill="#0F1A2C">.NET Core · Microservices</text>
+  <g>
+    <rect x="232" y="115" width="55" height="20" fill="#0F1A2C" />
+    <rect x="293" y="115" width="55" height="20" fill="#0F1A2C" />
+    <rect x="232" y="142" width="55" height="20" fill="#0F1A2C" />
+    <rect x="293" y="142" width="55" height="20" fill="#0F1A2C" />
+    <rect x="232" y="169" width="55" height="20" fill="#0F1A2C" />
+    <rect x="293" y="169" width="55" height="20" fill="#0F1A2C" />
+    <rect x="232" y="196" width="55" height="20" fill="#0F1A2C" />
+    <rect x="293" y="196" width="55" height="20" fill="#0F1A2C" />
+  </g>
+  <text x="232" y="232" font-family="JetBrains Mono" font-size="9" fill="#8A8578">12+ services · 30 pipelines</text>
+</svg>
+
+<style>
+  .thumb-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+</style>

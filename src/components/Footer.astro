@@ -1,0 +1,112 @@
+---
+// Footer.astro — large contact CTA + sitemap.
+// Doubles as the page's contact section since the practice is small.
+---
+
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-col-label">§ 04 — Get in touch</div>
+        <h2 class="footer-headline">
+          Let's talk about what you're <em>trying to ship.</em>
+        </h2>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">Direct</div>
+        <a href="mailto:jim@earlybirdsolutions.com">jim@earlybirdsolutions.com</a>
+        <a href="https://calendly.com/" target="_blank" rel="noopener">
+          Schedule a 30-min call →
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
+          LinkedIn →
+        </a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">Practice</div>
+        <a href="/services">Services</a>
+        <a href="/work">Selected work</a>
+        <a href="/about">About</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {new Date().getFullYear()} Early Bird Solutions LLC</span>
+      <span>Florida, USA · Eastern Time</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 80px 0 40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 80px;
+  }
+
+  .footer-headline {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--bg);
+    font-weight: 400;
+  }
+
+  .footer-headline em {
+    font-style: italic;
+    color: var(--accent-bright);
+  }
+
+  .footer-col-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 16px;
+  }
+
+  .footer-col a {
+    display: block;
+    color: var(--bg);
+    margin-bottom: 8px;
+    font-size: 15px;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover {
+    color: var(--accent-bright);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(244, 241, 234, 0.15);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+</style>

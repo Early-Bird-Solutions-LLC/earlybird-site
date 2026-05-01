@@ -1,0 +1,100 @@
+---
+const links = [
+  { href: '/services', label: 'Services' },
+  { href: '/work', label: 'Selected work' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark"></span>
+      Early&nbsp;Bird&nbsp;Solutions
+    </a>
+    <div class="nav-links">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href="/contact" class="nav-cta">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(244, 241, 234, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    z-index: 100;
+  }
+
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .logo-mark {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    transform: translateY(-2px);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  .nav-links a {
+    color: var(--ink-soft);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--accent-deep);
+  }
+
+  .nav-cta {
+    padding: 8px 18px;
+    border: 1px solid var(--ink);
+    color: var(--ink) !important;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .nav-cta:hover {
+    background: var(--ink);
+    color: var(--bg) !important;
+  }
+
+  @media (max-width: 900px) {
+    .nav-inner {
+      padding: 16px 24px;
+    }
+    .nav-links {
+      gap: 16px;
+    }
+    .nav-links a:not(.nav-cta) {
+      display: none;
+    }
+  }
+</style>

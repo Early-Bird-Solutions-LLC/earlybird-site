@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const credentials = [
+  'Microsoft Certified — Azure Solutions Architect Expert',
+  'Microsoft Certified — Azure Administrator Associate',
+  'Working toward — Azure AI Engineer Associate (AI-102)',
+];
+
+const stack = [
+  'Azure (Container Apps, AI Foundry, AI Search, Application Gateway, Virtual WAN)',
+  'C# / .NET (Framework + Core)',
+  'Blazor',
+  'Bicep / Pulumi',
+  'Azure DevOps',
+  'Dapr',
+  'Duende IdentityServer',
+  'PostgreSQL · pgvector',
+];
+---
+
+<BaseLayout
+  title="About — Early Bird Solutions"
+  description="About Jim Keeley — senior platform engineer and Microsoft Certified Azure Solutions Architect Expert."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-num">§ About</div>
+        <h1 class="section-title">
+          Built like a senior IC. <em>Runs like a consultant.</em>
+        </h1>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-bio">
+          <p>
+            I'm Jim Keeley — a senior platform engineer and Microsoft Certified
+            Azure Solutions Architect Expert based in Florida. For the past
+            several years I've been the platform engineer on Advantage Payment
+            Services, a multi-tenant fintech platform running real PCI-regulated
+            workloads at production scale.
+          </p>
+          <p>
+            Early Bird Solutions is the consulting practice I run alongside that
+            work. The focus is helping companies ship AI on the Microsoft stack
+            — particularly when their environment is regulated, complex, or
+            built on .NET.
+          </p>
+          <p>
+            I take a small number of engagements at a time. If you're
+            considering working together, the easiest path is a short call.
+          </p>
+          <a href="/contact" class="bio-cta">
+            Schedule a call <span>→</span>
+          </a>
+        </div>
+
+        <aside class="about-side">
+          <div class="side-block">
+            <div class="side-label">Credentials</div>
+            <ul>
+              {credentials.map((c) => <li>{c}</li>)}
+            </ul>
+          </div>
+          <div class="side-block">
+            <div class="side-label">Stack I work in daily</div>
+            <ul>
+              {stack.map((s) => <li>{s}</li>)}
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+
+  .about-bio p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+
+  .about-bio p:first-child {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.4vw, 28px);
+    line-height: 1.45;
+    color: var(--ink);
+    font-style: italic;
+    margin-bottom: 32px;
+  }
+
+  .bio-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    transition: all 0.2s;
+  }
+
+  .bio-cta:hover {
+    color: var(--accent-deep);
+  }
+
+  .about-side {
+    border-left: 1px solid var(--rule);
+    padding-left: 40px;
+  }
+
+  .side-block {
+    margin-bottom: 40px;
+  }
+
+  .side-block:last-child {
+    margin-bottom: 0;
+  }
+
+  .side-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+
+  .side-block ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .side-block li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .side-block li:last-child {
+    border-bottom: none;
+  }
+
+  @media (max-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .about-side {
+      border-left: none;
+      border-top: 1px solid var(--rule);
+      padding-left: 0;
+      padding-top: 32px;
+    }
+  }
+</style>

@@ -1,0 +1,95 @@
+---
+import { getCollection } from 'astro:content';
+
+const services = (await getCollection('services')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 01 — Services</div>
+      <h2 class="section-title">
+        Most AI consulting treats the model as the hard part. In production, the
+        hard parts are <em>integration, security, cost,</em> and the messy reality
+        of existing systems.
+      </h2>
+    </div>
+
+    <div class="services-grid">
+      {
+        services.map((s) => (
+          <article class="service">
+            <div class="service-num">{s.data.number}</div>
+            <h3 class="service-title">{s.data.title}</h3>
+            <p class="service-body">{s.data.summary}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .service {
+    padding: 48px 40px 48px 0;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .service:nth-child(odd) {
+    padding-right: 60px;
+    border-right: 1px solid var(--rule);
+  }
+
+  .service:nth-child(even) {
+    padding-left: 60px;
+  }
+
+  .service-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .service-title {
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 1.15;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+  }
+
+  .service-body {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 900px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+    .service:nth-child(odd) {
+      padding-right: 0;
+      border-right: none;
+    }
+    .service:nth-child(even) {
+      padding-left: 0;
+    }
+    .service {
+      padding: 32px 0;
+    }
+  }
+</style>

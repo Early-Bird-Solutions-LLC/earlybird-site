@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const work = (await getCollection('work')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout
+  title="Selected work — Early Bird Solutions"
+  description="Selected case studies from recent Azure AI and platform engineering engagements."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-num">§ Selected work</div>
+        <h1 class="section-title">
+          Recent engagements. <em>Anonymized</em> where required.
+        </h1>
+      </div>
+
+      <div class="work-list">
+        {
+          work.map((entry) => (
+            <article class="work-row">
+              <div class="work-meta">
+                <div class="work-tag">{entry.data.tag}</div>
+              </div>
+              <div class="work-content">
+                <h2 class="work-title">{entry.data.title}</h2>
+                <p class="work-summary">{entry.data.summary}</p>
+                {entry.data.highlights.length > 0 && (
+                  <ul class="work-highlights">
+                    {entry.data.highlights.map((h) => (
+                      <li>{h}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .work-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .work-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 60px;
+    padding: 56px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .work-row:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .work-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .work-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.5vw, 42px);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+  }
+
+  .work-summary {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    max-width: 720px;
+  }
+
+  .work-highlights {
+    list-style: none;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+    margin-top: 24px;
+  }
+
+  .work-highlights li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-family: var(--mono);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 900px) {
+    .work-row {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+</style>
