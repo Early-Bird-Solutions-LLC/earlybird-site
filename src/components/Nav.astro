@@ -8,14 +8,29 @@ const links = [
 
 <nav>
   <div class="nav-inner">
-    <a href="/" class="logo">
-      <span class="logo-mark"></span>
+    <a href="/" class="logo" aria-label="Early Bird Solutions — home">
+      <span class="logo-mark" aria-hidden="true"></span>
       Early&nbsp;Bird&nbsp;Solutions
     </a>
-    <div class="nav-links">
+
+    {/* Hidden checkbox controls the mobile drawer state. CSS-only — zero JS. */}
+    <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-controls="nav-drawer" />
+
+    {/* Hamburger button (mobile only — hidden on desktop via CSS). */}
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Open menu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </label>
+
+    {/* Nav drawer — desktop horizontal row, mobile slide-in panel. */}
+    <div id="nav-drawer" class="nav-links">
       {links.map((l) => <a href={l.href}>{l.label}</a>)}
       <a href="/contact" class="nav-cta">Get in touch</a>
     </div>
+
+    {/* Backdrop tap-to-close on mobile (hidden on desktop). */}
+    <label for="nav-toggle" class="nav-overlay" aria-label="Close menu"></label>
   </div>
 </nav>
 
@@ -30,6 +45,13 @@ const links = [
     z-index: 100;
   }
 
+  /* Solid-background fallback when backdrop-filter isn't supported */
+  @supports not (backdrop-filter: blur(12px)) {
+    nav {
+      background: var(--bg);
+    }
+  }
+
   .nav-inner {
     display: flex;
     justify-content: space-between;
@@ -37,6 +59,7 @@ const links = [
     padding: 18px 40px;
     max-width: 1240px;
     margin: 0 auto;
+    position: relative;
   }
 
   .logo {
@@ -46,6 +69,7 @@ const links = [
     display: flex;
     align-items: baseline;
     gap: 8px;
+    z-index: 2;
   }
 
   .logo-mark {
@@ -69,7 +93,8 @@ const links = [
     transition: color 0.2s;
   }
 
-  .nav-links a:hover {
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
     color: var(--accent-deep);
   }
 
@@ -78,23 +103,135 @@ const links = [
     border: 1px solid var(--ink);
     color: var(--ink) !important;
     font-weight: 500;
-    transition: all 0.2s;
+    transition: background-color 0.2s, color 0.2s;
   }
 
-  .nav-cta:hover {
+  .nav-cta:hover,
+  .nav-cta:focus-visible {
     background: var(--ink);
     color: var(--bg) !important;
+  }
+
+  /* Mobile-only elements — hidden by default */
+  .nav-toggle,
+  .nav-toggle-label,
+  .nav-overlay {
+    display: none;
   }
 
   @media (max-width: 900px) {
     .nav-inner {
       padding: 16px 24px;
     }
-    .nav-links {
-      gap: 16px;
+
+    /* Show the hamburger trigger */
+    .nav-toggle-label {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      z-index: 2;
+      background: none;
+      border: 0;
+      padding: 6px;
+      box-sizing: border-box;
     }
-    .nav-links a:not(.nav-cta) {
-      display: none;
+
+    .nav-toggle-label span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    /* Hamburger -> X when open */
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    /* Drawer: off-canvas right, slides in when checkbox is checked */
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(78vw, 320px);
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 96px 32px 32px;
+      gap: 24px;
+      background: var(--bg);
+      border-left: 1px solid var(--rule);
+      transform: translateX(100%);
+      transition: transform 0.25s ease-out;
+      font-size: 18px;
+      z-index: 1;
+      overflow-y: auto;
+    }
+
+    .nav-toggle:checked ~ .nav-links {
+      transform: translateX(0);
+    }
+
+    .nav-links a {
+      color: var(--ink);
+      width: 100%;
+      padding: 4px 0;
+    }
+
+    .nav-cta {
+      margin-top: 12px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Backdrop */
+    .nav-overlay {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 26, 44, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+      cursor: pointer;
+      z-index: 0;
+    }
+
+    .nav-toggle:checked ~ .nav-overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Aria-label swap so screen readers announce the right action */
+    .nav-toggle:checked + .nav-toggle-label::before {
+      content: 'Close menu';
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+  }
+
+  /* Honor reduced-motion for the slide animation */
+  @media (prefers-reduced-motion: reduce) {
+    .nav-links,
+    .nav-overlay,
+    .nav-toggle-label span {
+      transition: none !important;
     }
   }
 </style>

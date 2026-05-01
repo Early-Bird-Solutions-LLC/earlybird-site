@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Early Bird Solutions — OG card source</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    /* Source for public/og-default.png — render at 1200x630.
+       Regenerate by running:
+         npx playwright cr --viewport=1200,630 file://./scripts/og-source.html
+       and saving the screenshot to public/og-default.png.
+       Or use the Playwright MCP / any headless browser to screenshot. */
+    :root {
+      --bg: #F4F1EA;
+      --ink: #0F1A2C;
+      --ink-soft: #4A5568;
+      --ink-faint: #8A8578;
+      --rule: #D8D2C2;
+      --accent: #B8763E;
+    }
+    html, body { margin: 0; padding: 0; background: var(--bg); }
+    body { font-family: 'IBM Plex Sans', sans-serif; }
+
+    .og {
+      width: 1200px;
+      height: 630px;
+      background: var(--bg);
+      color: var(--ink);
+      padding: 80px 96px;
+      box-sizing: border-box;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle paper-grain overlay, same as the live site */
+    .og::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.4;
+      background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.06 0 0 0 0 0.1 0 0 0 0 0.17 0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    }
+
+    .og > * { position: relative; z-index: 1; }
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      font-weight: 500;
+    }
+
+    .headline-block {
+      align-self: center;
+      max-width: 1000px;
+    }
+
+    .headline {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: 132px;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .headline em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .sub {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 300;
+      font-size: 30px;
+      line-height: 1.4;
+      color: var(--ink-soft);
+      margin: 32px 0 0;
+      letter-spacing: -0.005em;
+      max-width: 880px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-top: 1px solid var(--rule);
+      padding-top: 24px;
+      gap: 24px;
+    }
+
+    .domain {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .accent-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .credentials {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="og">
+    <div class="eyebrow">§ Azure AI Consulting</div>
+    <div class="headline-block">
+      <h1 class="headline">Early Bird <em>Solutions</em></h1>
+      <p class="sub">Senior Azure AI consulting on the Microsoft stack — RAG, AI Foundry, and AI integration into regulated and .NET environments.</p>
+    </div>
+    <div class="footer">
+      <span class="domain"><span class="accent-dot"></span>earlybirdsolutions.com</span>
+      <span class="credentials">Microsoft Certified · Azure Solutions Architect Expert</span>
+    </div>
+  </div>
+</body>
+</html>
