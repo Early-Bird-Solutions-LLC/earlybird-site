@@ -198,3 +198,57 @@ a {
 .rise {
   animation: rise 0.7s cubic-bezier(0.2, 0.6, 0.2, 1) backwards;
 }
+
+/* === Accessibility === */
+
+/* Visible focus ring for keyboard navigation. Mouse clicks don't trigger
+   :focus-visible, so this stays out of the way for pointer users. */
+a:focus-visible,
+button:focus-visible,
+[role='button']:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip link — sr-only by default, visible when focused via Tab. Lets
+   keyboard / screen-reader users bypass the nav on every page. */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.75rem 1rem;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform 0.15s ease-out;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Honor user's reduced-motion preference: kill smooth scroll, the rise
+   entrance animation, and the hover-lift transitions. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

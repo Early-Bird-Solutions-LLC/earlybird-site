@@ -45,7 +45,7 @@ These were debated and settled. Please don't suggest reversing without a strong 
 - **Vanilla CSS over Tailwind.** Site is small (~5 pages); design tokens in `global.css` are simpler than Tailwind class soup for this scale.
 - **Content as Markdown via collections, not hardcoded.** Lets Jim add services/case studies without touching components.
 - **Hardcoded hero/about/contact copy in components, not in collections.** That copy is visual identity, not editable content.
-- **No contact form.** Email + Calendly is cleaner. Form would need a backend.
+- **No contact form.** Email + Cal.com is cleaner. Form would need a backend.
 - **No analytics yet.** Decision deferred. Plausible or App Insights when ready.
 - **No blog yet.** Adding blog is a content commitment, not a tech decision.
 - **No Cloudflare proxy.** Let SWA terminate TLS directly. Fewer moving parts.

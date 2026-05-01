@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { render } from 'astro:content';
 
 const services = (await getCollection('services')).sort(
   (a, b) => a.data.order - b.data.order,
@@ -24,19 +23,13 @@ const services = (await getCollection('services')).sort(
 
       <div class="services-list">
         {
-          services.map(async (s) => {
-            const { Content } = await render(s);
-            return (
-              <article class="service-detail">
-                <div class="service-num">{s.data.number}</div>
-                <h2 class="service-title">{s.data.title}</h2>
-                <p class="service-summary">{s.data.summary}</p>
-                <div class="service-body">
-                  <Content />
-                </div>
-              </article>
-            );
-          })
+          services.map((s) => (
+            <article class="service-detail">
+              <div class="service-num">{s.data.number}</div>
+              <h2 class="service-title">{s.data.title}</h2>
+              <p class="service-summary">{s.data.summary}</p>
+            </article>
+          ))
         }
       </div>
     </div>

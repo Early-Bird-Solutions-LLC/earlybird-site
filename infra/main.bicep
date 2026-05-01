@@ -18,6 +18,9 @@ param branch string = 'main'
 @description('When true, attach SWA custom domains for apex and www. Set false on first deploy (before registrar nameservers point at Azure DNS); set true on the second deploy after propagation.')
 param attachCustomDomains bool = false
 
+@description('Apex domain validation token. Apex SWA custom domains require dns-txt-token validation, which mints a token at deploy time. Leave empty on the first Phase 2 deploy; afterwards run "az staticwebapp hostname show -n swa-earlybird-site -g rg-earlybird-site --hostname earlybirdsolutions.com --query validationToken -o tsv" and set this value, then redeploy to publish the token in the apex TXT record so validation can complete.')
+param apexValidationToken string = ''
+
 @description('TXT records at the apex (Google Workspace SPF, M365 verification, third-party verification tokens).')
 param apexTxtRecords array = [
   [ 'v=spf1 include:_spf.google.com ~all' ]
@@ -34,6 +37,13 @@ param tags object = {
   owner: 'jim@earlybirdsolutions.com'
   managedBy: 'bicep'
 }
+
+// Combined apex TXT record set: preserved tokens + the SWA validation token
+// (when supplied via apexValidationToken). dns-txt-token validation requires
+// the token to appear in the apex TXT record set.
+var apexTxtAll = empty(apexValidationToken)
+  ? apexTxtRecords
+  : concat(apexTxtRecords, [ [ apexValidationToken ] ])
 
 // ----------------------------------------------------------------------------
 // Static Web App (Free tier, no source-linking - deploys via GitHub Actions
@@ -53,7 +63,6 @@ resource swa 'Microsoft.Web/staticSites@2024-11-01' = {
     provider: 'GitHub'
     stagingEnvironmentPolicy: 'Enabled'
     allowConfigFileUpdates: true
-    deploymentAuthPolicy: 'DeploymentToken'
   }
 }
 
@@ -83,13 +92,15 @@ resource mxApex 'Microsoft.Network/dnsZones/MX@2018-05-01' = {
   }
 }
 
-// TXT at apex — SPF + verification tokens preserved from GoDaddy
+// TXT at apex — SPF, verification tokens preserved from GoDaddy, plus the
+// apex SWA validation token (when supplied) so dns-txt-token validation
+// can complete in a single record set.
 resource txtApex 'Microsoft.Network/dnsZones/TXT@2018-05-01' = {
   parent: dnsZone
   name: '@'
   properties: {
     TTL: 3600
-    TXTRecords: [for txt in apexTxtRecords: {
+    TXTRecords: [for txt in apexTxtAll: {
       value: txt
     }]
   }
@@ -153,9 +164,10 @@ resource customDomainApex 'Microsoft.Web/staticSites/customDomains@2024-11-01' =
   name: domainName
   dependsOn: [
     aliasApex
+    txtApex
   ]
   properties: {
-    validationMethod: 'cname-delegation'
+    validationMethod: 'dns-txt-token'
   }
 }
 

@@ -161,8 +161,8 @@ If you ever embed external widgets (Calendly, Plausible, etc.), tune as needed.
 
 ## Things to do before going live
 
-- [ ] Replace placeholder Calendly URL in `Footer.astro` and `contact.astro`
-- [ ] Replace placeholder LinkedIn URL in the same places
+- [x] Replace placeholder Cal.com URL in `Footer.astro` and `contact.astro`
+- [x] Replace placeholder LinkedIn URL in the same places
 - [ ] Add an OG image at `public/og-default.png` (1200×630). The architecture diagram style would be on-brand.
 - [ ] Decide whether to add Plausible or App Insights
 - [ ] Verify the site renders well on mobile (especially `/work` table layout)
