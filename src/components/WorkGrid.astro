@@ -1,7 +1,9 @@
 ---
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import { getCollection } from 'astro:content';
+import HrAssistant from './case-thumbs/HrAssistant.astro';
 import ConfluenceRag from './case-thumbs/ConfluenceRag.astro';
+import JungleTech from './case-thumbs/JungleTech.astro';
 import NetModernization from './case-thumbs/NetModernization.astro';
 
 const work = (await getCollection('work')).sort(
@@ -10,7 +12,9 @@ const work = (await getCollection('work')).sort(
 
 // Map slug → thumbnail component
 const thumbs: Record<string, AstroComponentFactory> = {
+  'hr-assistant': HrAssistant,
   'conflux-rag': ConfluenceRag,
+  'jungletech': JungleTech,
   'net-modernization': NetModernization,
 };
 ---

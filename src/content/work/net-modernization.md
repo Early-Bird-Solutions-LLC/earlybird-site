@@ -1,7 +1,7 @@
 ---
-order: 3
+order: 4
 title: "Legacy .NET modernization at scale"
-tag: "Case 03 · Modernization · Anonymized"
+tag: "Case 04 · Modernization · Anonymized"
 summary: "200+ project codebase migrated to .NET Core. 25% reduction in infrastructure overhead."
 public: false
 highlights:
