@@ -25,3 +25,12 @@ Thumbs.db
 
 # Azure / deployment
 .azure/
+
+# Claude / agentic tooling
+.claude/
+
+# Playwright MCP runtime artifacts
+.playwright-mcp/
+
+# Stray screenshot artifacts
+og-render-attempt.png
